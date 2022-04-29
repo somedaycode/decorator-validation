@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { errorLogStore } from '../../index';
 
 /*
  * Class Validator에서 reflect-metadata는 어떻게 활용을 한거지..
@@ -24,7 +25,9 @@ export function Max(maxNumber: number) {
 
     function validate() {
       if (!checkMaxNumber(value, maxNumber))
-        throw `failed Max Validation : ${maxNumber}`;
+        return errorLogStore.addErrorLog(
+          `failed Max Validation : ${maxNumber}`
+        );
       return value;
     }
 
@@ -35,6 +38,7 @@ export function Max(maxNumber: number) {
     return {
       get: validate,
       set: setter,
+      enumerable: true,
     };
   };
 }

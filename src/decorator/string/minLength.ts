@@ -1,3 +1,5 @@
+import { errorLogStore } from '../../index';
+
 export function minLength(value: unknown, min: number): boolean {
   return typeof value === 'string' && value.length >= min;
 }
@@ -7,7 +9,11 @@ export function MinLength(min: number) {
     let value = target[propertyKey];
 
     function validate() {
-      if (!minLength(value, min)) throw `failed Max Validation : ${min}`;
+      if (!minLength(value, min)) {
+        return errorLogStore.addErrorLog(
+          `failed minLength Validation : ${min}`
+        );
+      }
       return value;
     }
 
@@ -18,6 +24,7 @@ export function MinLength(min: number) {
     return {
       get: validate,
       set: setter,
+      enumerable: true,
     };
   };
 }

@@ -1,5 +1,7 @@
 import { Max } from './decorator/number/max';
 import { MinLength } from './decorator/string/minLength';
+import { ErrorLogStore } from './errorStore';
+import { validator } from './validator';
 
 /*
  *
@@ -12,24 +14,19 @@ class Person {
   @MinLength(2)
   name: string;
 
-  @Max(20)
+  @Max(10)
   age: number;
 }
+
+export const errorLogStore = new ErrorLogStore();
 
 const main = () => {
   const somedaycode = new Person();
   somedaycode.name = 'Q';
   somedaycode.age = 14;
 
-  try {
-    const printYourName = (input: Person) => input.name;
-    const printYourAge = (input: Person) => input.age;
-
-    printYourName(somedaycode);
-    printYourAge(somedaycode);
-  } catch (e: any) {
-    throw new Error(e.message);
-  }
+  validator(somedaycode);
+  errorLogStore.printErrorLogs();
 };
 
 main();

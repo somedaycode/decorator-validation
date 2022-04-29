@@ -26,7 +26,9 @@ const main = () => {
   somedaycode.age = 14;
 
   validator(somedaycode);
-  errorLogStore.printErrorLogs();
+  errorLogStore.throwIfHasErrorLogs(); // throw errors
+
+  console.log('출력이 되나요?'); // 출력 안됨
 };
 
 main();

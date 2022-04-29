@@ -7,7 +7,7 @@ export class ErrorLogStore {
     if (message && path) return { message, path };
   }
 
-  public printErrorLogs() {
+  public throwIfHasErrorLogs() {
     if (this.store.length > 0) throw this.store;
     return console.log('No Errors found');
   }

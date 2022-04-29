@@ -57,10 +57,10 @@ import { validator } from './validator';
 
 class Person {
   @MinLength(2)
-  name: string;
+  public name: string;
 
   @Max(10)
-  age: number;
+  public age: number;
 }
 
 export const errorLogStore = new ErrorLogStore();
@@ -71,10 +71,13 @@ const main = () => {
   somedaycode.age = 14;
 
   validator(somedaycode);
-  errorLogStore.printErrorLogs();
+  errorLogStore.throwIfHasErrorLogs(); // throw errors
+
+  console.log('출력이 되나요?'); // 출력 안됨
 };
 
 main();
+
 ```
 
 ```js

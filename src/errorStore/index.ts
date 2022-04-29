@@ -8,7 +8,8 @@ export class ErrorLogStore {
   }
 
   public printErrorLogs() {
-    return console.log(this.store);
+    if (this.store.length > 0) throw this.store;
+    return console.log('No Errors found');
   }
 
   public addErrorLog(errLog: string) {

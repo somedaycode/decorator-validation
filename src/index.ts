@@ -12,10 +12,10 @@ import { validator } from './validator';
 
 class Person {
   @MinLength(2)
-  name: string;
+  public name: string;
 
   @Max(10)
-  age: number;
+  public age: number;
 }
 
 export const errorLogStore = new ErrorLogStore();

@@ -1,4 +1,4 @@
-export const validator = (target: { [key: string]: any }) => {
+export const validator = (target: Record<string, any>) => {
   for (const key in target) {
     target[key];
   }
